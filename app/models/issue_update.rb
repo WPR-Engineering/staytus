@@ -29,6 +29,7 @@ class IssueUpdate < ActiveRecord::Base
 
   after_save :update_base_issue
   after_commit :send_notifications_on_create, :on => :create
+  after_commit :send_minor_notifications_on_create, :on => :create
 
   florrick do
     string :state
@@ -60,6 +61,17 @@ class IssueUpdate < ActiveRecord::Base
   def send_notifications_on_create
     if self.notify?
       delay.send_notifications
+    end
+  end
+
+  def send_minor
+      puts "sent minor email"
+      Staytus::Email.deliverlist("minor@example.com", :new_issue, :issue => self, :update => self.updates.order(:id).first)
+  end
+
+  def send_minor_notifications_on_create
+    if self.minor_email?
+      self.delay.send_minor
     end
   end
 

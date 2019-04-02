@@ -50,6 +50,14 @@
                   = f.check_box :notify
                   = f.label :notify, "Notify #{pluralize Subscriber.verified.count, 'subscriber'}"
 
+          - if @issue.minor_email?
+            %dl.fieldSet__field.u-margin
+              %dt.fieldSet__label= f.label :monir_email, "Notify the minor email list when this issue is posted?"
+              %dd.fieldSet__input
+                .fieldSet__checkbox.fieldSet__selectContainer
+                  = f.check_box :minor_email
+                  = f.label :minor_email, "Update the minor event email list"
+
       %p.u-align-right= f.submit "Post Update", :class => 'button button--solid'
 
   .box__footer
