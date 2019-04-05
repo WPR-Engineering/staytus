@@ -50,19 +50,19 @@
 
 
         %dl.fieldSet__field.u-margin
-          %dt.fieldSet__label= f.label :monir_email, "Notify the major email list when this issue is posted?"
+          %dt.fieldSet__label= f.label :major_email, "Notify the major email list when this issue is posted?"
           %dd.fieldSet__input
             .fieldSet__checkbox.fieldSet__selectContainer
-              = f.check_box :minor_email
-              = f.label :minor_email, "Yes - send notifications to the Major event email list"
+              = f.check_box :major_email
+              = f.label :major_email, "Yes - send notifications to the Major event email list"
 
 
         %dl.fieldSet__field.u-margin
-          %dt.fieldSet__label= f.label :monir_email, "Notify the critical email list when this issue is posted?"
+          %dt.fieldSet__label= f.label :critical_email, "Notify the critical email list when this issue is posted?"
           %dd.fieldSet__input
             .fieldSet__checkbox.fieldSet__selectContainer
-              = f.check_box :minor_email
-              = f.label :minor_email, "Yes - send notifications to the critical event email list"
+              = f.check_box :critical_email
+              = f.label :critical_email, "Yes - send notifications to the critical event email list"
 
   .formButtons
     - unless @issue.new_record?

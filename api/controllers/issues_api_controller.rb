@@ -15,6 +15,8 @@ controller :issues do
     param :status, :required => true, :type => String
     param :notify, :required => false
     param :minor_email, :required => false
+    param :major_email, :required => false
+    param :critical_email, :required => false
 
     action do
       issue_params = {
@@ -24,7 +26,9 @@ controller :issues do
         service_ids: Service.where(permalink: params.services).pluck(:id),
         service_status_id: ServiceStatus.where(permalink: params.status).first.id,
         notify: params.notify,
-        minor_email: params.minor_email
+        minor_email: params.minor_email,
+        major_email: params.major_email,
+        critical_email: params.critical_email
       }
 
       issue = Issue.new issue_params
@@ -54,6 +58,8 @@ controller :issues do
     param :status, :required => false, :type => String
     param :notify, :required => false
     param :minor_email, :required => false
+    param :major_email, :required => false
+    param :critical_email, :required => false
 
     action do
       update_params = {
@@ -61,7 +67,9 @@ controller :issues do
         state: params.state,
         service_status: ServiceStatus.where(permalink: params.status).first,
         notify: params.notify,
-        minor_email: params.minor_email
+        minor_email: params.minor_email,
+        major_email: params.major_email,
+        critical_email: params.critical_email
       }.compact
 
       issue = Issue.find params.id

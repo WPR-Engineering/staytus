@@ -44,6 +44,8 @@ class Issue < ActiveRecord::Base
   after_destroy :destroy_history_item
   after_commit :send_notifications_on_create, :on => :create
   after_commit :send_minor_notifications_on_create, :on => :create
+  after_commit :send_major_notifications_on_create, :on => :create
+  after_commit :send_critical_notifications_on_create, :on => :create
 
   florrick do
     string :title
@@ -93,15 +95,25 @@ class Issue < ActiveRecord::Base
     end
   end
 
-  def send_minor
-    subscriber = "email123@89898989.com"
-      Staytus::Email.deliverlist(subscriber, :new_issue, :issue => self, :update => self.updates.order(:id).first)
+  def send_lists(list)
+      Staytus::Email.deliverlist(list, :new_issue, :issue => self, :update => self.updates.order(:id).first)
   end
-
 
   def send_minor_notifications_on_create
     if self.minor_email?
-      self.delay.send_minor
+      self.delay.send_lists("minor@example.com")
+    end
+  end
+
+  def send_major_notifications_on_create
+    if self.major_email?
+      self.delay.send_lists("major@example.com")
+    end
+  end
+
+  def send_critical_notifications_on_create
+    if self.critical_email?
+      self.delay.send_lists("critical@example.com")
     end
   end
 
