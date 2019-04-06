@@ -101,19 +101,19 @@ class Issue < ActiveRecord::Base
 
   def send_minor_notifications_on_create
     if self.minor_email?
-      self.delay.send_lists("minor@example.com")
+      self.delay.send_lists(ENV['MINOR_EMAIL_LIST'])
     end
   end
 
   def send_major_notifications_on_create
     if self.major_email?
-      self.delay.send_lists("major@example.com")
+      self.delay.send_lists(ENV['MAJOR_EMAIL_LIST'])
     end
   end
 
   def send_critical_notifications_on_create
     if self.critical_email?
-      self.delay.send_lists("critical@example.com")
+      self.delay.send_lists(ENV['CRITICAL_EMAIL_LIST'])
     end
   end
 

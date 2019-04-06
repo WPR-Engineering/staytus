@@ -29,7 +29,7 @@
       %dl.fieldSet__field.u-margin
         %dt.fieldSet__label= f.label :service_status_id, "Set the status for these services to..."
         %dd.fieldSet__input
-          .fieldSet__selectContainer= f.collection_select :service_status_id, ServiceStatus.problematic.sort_by_type, :id, :name
+          .fieldSet__selectContainer= f.collection_select :service_status_id, ServiceStatus.problematic.sort_by_type, :id, :name, :include_blank => "Don't change service statuses"
 
       - if site.allow_subscriptions?
         %dl.fieldSet__field.u-margin

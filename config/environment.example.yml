@@ -17,3 +17,13 @@ STAYTUS_SMTP_HOSTNAME: smtp.deliverhq.com
 STAYTUS_SMTP_PORT: '25'
 STAYTUS_SMTP_USERNAME: your-username
 STAYTUS_SMTP_PASSWORD: your-password
+
+# Configure the email lists for Minor, Major, and Critical issue emails
+MINOR_EMAIL_LIST: 'minor@example.com'
+MAJOR_EMAIL_LIST: 'minor@example.com'
+CRITICAL_EMAIL_LIST: 'minor@example.com'
+
+# Configure the email lists for Low Risk, Medium Risk, and High Risk planned maintnence
+LOW_RISK_EMAI: 'low_risk@example.com'
+MEDIUM_RISK_EMAIL: 'medium_risk@example.com'
+HIGH_RISK_EMAIL: 'high_risk@example.com'
