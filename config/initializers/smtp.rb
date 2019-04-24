@@ -1,10 +1,11 @@
-if ENV['STAYTUS_SMTP_HOSTNAME']
+if CONFIG[:EMAIL_SERVER][:ENABLED]
+  puts "\e[33m=> Your email will be sent from #{CONFIG[:EMAIL_SERVER][:SMTP_HOST]}.\e[0m"
   ActionMailer::Base.delivery_method = :smtp
   ActionMailer::Base.smtp_settings = {
-    :address    => ENV['STAYTUS_SMTP_HOSTNAME'],
-    :port       => ENV['STAYTUS_SMTP_PORT'],
-    :user_name  => ENV['STAYTUS_SMTP_USERNAME'],
-    :password   => ENV['STAYTUS_SMTP_PASSWORD']
+    :address    => CONFIG[:EMAIL_SERVER][:SMTP_HOST],
+    :port       => CONFIG[:EMAIL_SERVER][:SMTP_PORT],
+    :user_name  => CONFIG[:EMAIL_SERVER][:SMTP_USER],
+    :password   => CONFIG[:EMAIL_SERVER][:SMTP_PASSWORD]
   }
 else
   puts "\e[33m=> You haven't configured an SMTP server. Mail will be sent using sendmail.\e[0m"

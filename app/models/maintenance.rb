@@ -48,6 +48,9 @@ class Maintenance < ActiveRecord::Base
   after_save :create_or_update_history_item
   after_destroy :destroy_history_item
   after_commit :send_notifications_on_create, :on => :create
+  after_commit :send_low_risk_on_create, :on => :create
+  after_commit :send_med_risk_on_create, :on => :create
+  after_commit :send_high_risk_on_create, :on => :create
 
   florrick do
     string :title
@@ -120,9 +123,31 @@ class Maintenance < ActiveRecord::Base
     end
   end
 
+  def send_lists(list)
+      Staytus::Email.deliverlist(list, :new_maintenance, :maintenance => self)
+  end
+
   def send_notifications_on_create
     if self.notify?
       self.delay.send_notifications
+    end
+  end
+
+  def send_low_risk_on_create
+    if self.low_risk_email?
+      self.delay.send_lists(CONFIG[:MAINT_LIST][:LOW_RISK_LIST])
+    end
+  end
+
+  def send_med_risk_on_create
+    if self.medium_risk_email?
+      self.delay.send_lists(CONFIG[:MAINT_LIST][:LOW_RISK_LIST])
+    end
+  end
+
+  def send_high_risk_on_create
+    if self.high_risk_email?
+      self.delay.send_lists(CONFIG[:MAINT_LIST][:LOW_RISK_LIST])
     end
   end
 

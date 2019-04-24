@@ -8,6 +8,12 @@ Any version number which is suffixed by `-dev` means that it is currently
 being developed and is not yet released. It is most likely you'll only ever
 see this in a master branch.
 
+## v1.0.0 - WPR
+* Initial release with modifications from WPR
+* added email list support
+* changed from ENV config values to using a config file (app-config.yml)
+  - this was to support shared hosting environments
+
 ## v1.2.0
 
 * Allow services to be grouped

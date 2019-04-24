@@ -27,6 +27,7 @@ gem 'foreman'
 gem 'redcarpet', '~> 3.2.2'
 gem 'premailer', '~> 1.8.3'
 gem 'therubyracer'
+gem "daemons"
 
 group :development, :test do
   gem 'byebug'

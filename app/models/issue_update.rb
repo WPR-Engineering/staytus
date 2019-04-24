@@ -70,24 +70,24 @@ class IssueUpdate < ActiveRecord::Base
   end
 
   def send_lists(list)
-      Staytus::Email.deliverlist(list, :new_issue, :issue => self, :update => self.updates.order(:id).first)
+      Staytus::Email.deliverlist(list, :new_issue_update, :issue => self.issue, :update => self)
   end
 
   def send_minor_notifications_on_create
     if self.minor_email?
-      self.delay.send_lists(ENV['MINOR_EMAIL_LIST'])
+      self.delay.send_lists(CONFIG[:ISSUE_LISTS][:MINOR_LIST])
     end
   end
 
   def send_major_notifications_on_create
     if self.major_email?
-      self.delay.send_lists(ENV['MAJOR_EMAIL_LIST'])
+      self.delay.send_lists(CONFIG[:ISSUE_LISTS][:MAJOR_LIST])
     end
   end
 
   def send_critical_notifications_on_create
     if self.critical_email?
-      self.delay.send_lists(ENV['CRITICAL_EMAIL_LIST'])
+      self.delay.send_lists(CONFIG[:ISSUE_LISTS][:CRITICAL_LIST])
     end
   end
 
