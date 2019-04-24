@@ -1,3 +1,17 @@
+# WPR Modifications
+
+Wisconsin Public Radio has modified this software to work for their needs.
+
+We have added email list supports and changed a few of the interworkings of the software. Most importantly to configure the app do not follow the insturctions below.
+
+## WPR Modified version configuration
+
+1. copy database.yml.example to database.yml and add your database information
+2. copy environment.yml.example to environment.yml **DO NOT CHANGE ANYTHING**
+3. Copy app-config.yml.exmaple to app-config.yml and update all of the information within the file for your system. please note future modifications will allow these feilds to be optional and toggle display of email lists within the web interface.
+
+Everything else remains the same.
+
 # Staytus
 
 Staytus is a complete solution for publishing the latest information about

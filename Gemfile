@@ -19,6 +19,7 @@ gem 'chronic_duration'
 gem 'datey'
 gem 'nifty-attachments'
 gem 'puma'
+<<<<<<< HEAD
 gem 'moonrope'
 gem 'florrick'
 gem 'delayed_job_active_record'
@@ -27,6 +28,17 @@ gem 'redcarpet'
 gem 'premailer'
 gem 'rack-custom-proxies'
 gem 'log_logins'
+=======
+#gem 'passenger'
+gem 'moonrope', '~> 1.3'
+gem 'florrick', '~> 1.1'
+gem 'delayed_job_active_record'
+gem 'foreman'
+gem 'redcarpet', '~> 3.2.2'
+gem 'premailer', '~> 1.8.3'
+gem 'therubyracer'
+gem "daemons"
+>>>>>>> stable
 
 group :development, :test do
   gem 'annotate', '~> 2.6.5'

@@ -1,0 +1,16 @@
+EMAIL_SERVER:
+  ENABLED: true
+  SMTP_HOST: localhost
+  SMTP_PORT: '25'
+  SMTP_USER:
+  SMTP_PASSWORD:
+
+ISSUE_LISTS:
+  MINOR_LIST: "minor@example.com"
+  MAJOR_LIST: "major@example.com"
+  CRITICAL_LIST: "critical@example.com"
+
+MAINT_LIST:
+  LOW_RISK_LIST: "low@example.com"
+  MEDIUM_RISK_LIST: "medium@example.com"
+  HIGH_RISK_LIST: "high@example.com"

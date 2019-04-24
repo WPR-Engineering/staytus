@@ -50,6 +50,32 @@
                   = f.check_box :notify
                   = f.label :notify, "Notify #{pluralize Subscriber.verified.count, 'subscriber'}"
 
+          - if @issue.minor_email?
+            %dl.fieldSet__field.u-margin
+              %dt.fieldSet__label= f.label :minor_email, "Notify the minor email list when updated?"
+              %dd.fieldSet__input
+                .fieldSet__checkbox.fieldSet__selectContainer
+                  = f.check_box :minor_email
+                  = f.label :minor_email, "Update the minor event email list"
+
+          - if @issue.major_email?
+            %dl.fieldSet__field.u-margin
+              %dt.fieldSet__label= f.label :major_email, "Notify the major email list when updated?"
+              %dd.fieldSet__input
+                .fieldSet__checkbox.fieldSet__selectContainer
+                  = f.check_box :major_email
+                  = f.label :major_email, "Update the major event email list"
+
+
+          - if @issue.critical_email?
+            %dl.fieldSet__field.u-margin
+              %dt.fieldSet__label= f.label :critical_email, "Notify the critical email list when updated?"
+              %dd.fieldSet__input
+                .fieldSet__checkbox.fieldSet__selectContainer
+                  = f.check_box :critical_email
+                  = f.label :critical_email, "Update the critical event email list"
+
+
       %p.u-align-right= f.submit "Post Update", :class => 'button button--solid'
 
   .box__footer

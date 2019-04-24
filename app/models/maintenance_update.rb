@@ -2,6 +2,7 @@
 #
 # Table name: maintenance_updates
 #
+<<<<<<< HEAD
 #  id             :integer          not null, primary key
 #  maintenance_id :integer
 #  user_id        :integer
@@ -10,6 +11,19 @@
 #  updated_at     :datetime         not null
 #  identifier     :string(255)
 #  notify         :boolean          default(FALSE)
+=======
+#  id                :integer          not null, primary key
+#  maintenance_id    :integer
+#  user_id           :integer
+#  text              :text(65535)
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  identifier        :string(255)
+#  notify            :boolean          default(FALSE)
+#  low_risk_email    :boolean
+#  medium_risk_email :boolean
+#  high_risk_email   :boolean
+>>>>>>> stable
 #
 
 class MaintenanceUpdate < ActiveRecord::Base
@@ -24,6 +38,9 @@ class MaintenanceUpdate < ActiveRecord::Base
   scope :ordered, -> { order(:id => :desc) }
 
   after_commit :send_notifications_on_create, :on => :create
+  after_commit :send_low_risk_on_create, :on => :create
+  after_commit :send_med_risk_on_create, :on => :create
+  after_commit :send_high_risk_on_create, :on => :create
 
   florrick do
     string :text
@@ -38,10 +55,33 @@ class MaintenanceUpdate < ActiveRecord::Base
     end
   end
 
+  def send_lists(list)
+      Staytus::Email.deliverlist(list, :new_maintenance_update, :maintenance => self.maintenance, :update => self)
+  end
+
   def send_notifications_on_create
     if self.notify?
       self.delay.send_notifications
     end
   end
+
+  def send_low_risk_on_create
+    if self.low_risk_email?
+      self.delay.send_lists(CONFIG[:MAINT_LIST][:LOW_RISK_LIST])
+    end
+  end
+
+  def send_med_risk_on_create
+    if self.medium_risk_email?
+      self.delay.send_lists(CONFIG[:MAINT_LIST][:LOW_RISK_LIST])
+    end
+  end
+
+  def send_high_risk_on_create
+    if self.high_risk_email?
+      self.delay.send_lists(CONFIG[:MAINT_LIST][:LOW_RISK_LIST])
+    end
+  end
+
 
 end

@@ -7,6 +7,9 @@ structure :issue do
   full :created_at
   full :updated_at
   full :notify
+  full :minor_email
+  full :major_email
+  full :critical_email
 
   expansion :user do
     structure(o.user)

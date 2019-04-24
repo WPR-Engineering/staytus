@@ -10,6 +10,7 @@ STAYTUS_THEME: 'default'
 # If enabled, the application will allow any username/password
 # combination to login to the admin area.
 STAYTUS_DEMO: '0'
+<<<<<<< HEAD
 
 # Configure an SMTP server for sending messages. If you don't
 # configure an SMTP service, e-mail will be sent using sendmail.
@@ -20,3 +21,5 @@ STAYTUS_SMTP_PASSWORD: your-password
 
 # Configure SSL to be forced (ensuring HSTS headers are sent and cookies are all secure)
 FORCE_SSL: 1
+=======
+>>>>>>> stable

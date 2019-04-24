@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20180425131827) do
+=======
+ActiveRecord::Schema.define(version: 20190406021708) do
+>>>>>>> stable
 
   create_table "api_tokens", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.string "name"
@@ -78,6 +82,7 @@ ActiveRecord::Schema.define(version: 20180425131827) do
     t.datetime "date"
   end
 
+<<<<<<< HEAD
   create_table "issue_service_joins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.integer "issue_id"
     t.integer "service_id"
@@ -146,6 +151,68 @@ ActiveRecord::Schema.define(version: 20180425131827) do
   create_table "maintenances", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.string "title"
     t.text "description"
+=======
+  create_table "issue_service_joins", force: :cascade do |t|
+    t.integer  "issue_id",   limit: 4
+    t.integer  "service_id", limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  create_table "issue_updates", force: :cascade do |t|
+    t.integer  "issue_id",          limit: 4
+    t.integer  "user_id",           limit: 4
+    t.integer  "service_status_id", limit: 4
+    t.string   "state",             limit: 255
+    t.text     "text",              limit: 65535
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
+    t.string   "identifier",        limit: 255
+    t.boolean  "notify",                          default: false
+    t.boolean  "minor_email"
+    t.boolean  "major_email"
+    t.boolean  "critical_email"
+  end
+
+  create_table "issues", force: :cascade do |t|
+    t.string   "title",             limit: 255
+    t.string   "state",             limit: 255
+    t.integer  "service_status_id", limit: 4
+    t.boolean  "all_services",                  default: true
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
+    t.integer  "user_id",           limit: 4
+    t.string   "identifier",        limit: 255
+    t.boolean  "notify",                        default: false
+    t.boolean  "minor_email"
+    t.boolean  "major_email"
+    t.boolean  "critical_email"
+  end
+
+  create_table "maintenance_service_joins", force: :cascade do |t|
+    t.integer  "maintenance_id", limit: 4
+    t.integer  "service_id",     limit: 4
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  create_table "maintenance_updates", force: :cascade do |t|
+    t.integer  "maintenance_id",    limit: 4
+    t.integer  "user_id",           limit: 4
+    t.text     "text",              limit: 65535
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
+    t.string   "identifier",        limit: 255
+    t.boolean  "notify",                          default: false
+    t.boolean  "low_risk_email"
+    t.boolean  "medium_risk_email"
+    t.boolean  "high_risk_email"
+  end
+
+  create_table "maintenances", force: :cascade do |t|
+    t.string   "title",             limit: 255
+    t.text     "description",       limit: 65535
+>>>>>>> stable
     t.datetime "start_at"
     t.datetime "finish_at"
     t.integer "length_in_minutes"
@@ -154,6 +221,7 @@ ActiveRecord::Schema.define(version: 20180425131827) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "closed_at"
+<<<<<<< HEAD
     t.string "identifier"
     t.boolean "notify", default: false
   end
@@ -167,6 +235,24 @@ ActiveRecord::Schema.define(version: 20180425131827) do
     t.string "file_name"
     t.string "file_type"
     t.binary "data", limit: 16777215
+=======
+    t.string   "identifier",        limit: 255
+    t.boolean  "notify",                          default: false
+    t.boolean  "low_risk_email"
+    t.boolean  "medium_risk_email"
+    t.boolean  "high_risk_email"
+  end
+
+  create_table "nifty_attachments", force: :cascade do |t|
+    t.integer  "parent_id",   limit: 4
+    t.string   "parent_type", limit: 255
+    t.string   "token",       limit: 255
+    t.string   "digest",      limit: 255
+    t.string   "role",        limit: 255
+    t.string   "file_name",   limit: 255
+    t.string   "file_type",   limit: 255
+    t.binary   "data",        limit: 16777215
+>>>>>>> stable
     t.datetime "created_at"
     t.datetime "updated_at"
   end

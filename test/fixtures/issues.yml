@@ -1,0 +1,27 @@
+# == Schema Information
+#
+# Table name: issues
+#
+#  id                :integer          not null, primary key
+#  title             :string(255)
+#  state             :string(255)
+#  service_status_id :integer
+#  all_services      :boolean          default(TRUE)
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  user_id           :integer
+#  identifier        :string(255)
+#  notify            :boolean          default(FALSE)
+#  minor_email       :boolean
+#  major_email       :boolean
+#  critical_email    :boolean
+#
+
+one:
+  title: issue 1
+  state: operational
+  user: one
+
+two:
+  title: issue 2
+  state: major-outage

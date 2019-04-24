@@ -25,3 +25,9 @@ and tag it with suggestion.
 These items will be converted into **epic** issues when
 work begins and/or they become more than just a figment of
 my imagination.
+
+# WPR Modifications Roadmap
+
+* send updates to slack either with webhooks or another email list.
+* take in updates from opsgenie in the event of an issue (this may be able to use the API, investigating later)
+* Allow PRTG to upate issues (also probably can use the API)

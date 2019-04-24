@@ -15,4 +15,10 @@ config/environment.yml
 config/database.yml
 config/secret_token.yml
 public/assets
+<<<<<<< HEAD
 Procfile.local
+=======
+
+
+config/app-config\.yml
+>>>>>>> stable

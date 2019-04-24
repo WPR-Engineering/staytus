@@ -12,6 +12,12 @@
 #  updated_at        :datetime         not null
 #  identifier        :string(255)
 #  notify            :boolean          default(FALSE)
+<<<<<<< HEAD
+=======
+#  minor_email       :boolean
+#  major_email       :boolean
+#  critical_email    :boolean
+>>>>>>> stable
 #
 
 class IssueUpdate < ActiveRecord::Base
@@ -29,6 +35,9 @@ class IssueUpdate < ActiveRecord::Base
 
   after_save :update_base_issue
   after_commit :send_notifications_on_create, :on => :create
+  after_commit :send_minor_notifications_on_create, :on => :create
+  after_commit :send_major_notifications_on_create, :on => :create
+  after_commit :send_critical_notifications_on_create, :on => :create
 
   florrick do
     string :state
@@ -60,6 +69,28 @@ class IssueUpdate < ActiveRecord::Base
   def send_notifications_on_create
     if self.notify?
       delay.send_notifications
+    end
+  end
+
+  def send_lists(list)
+      Staytus::Email.deliverlist(list, :new_issue_update, :issue => self.issue, :update => self)
+  end
+
+  def send_minor_notifications_on_create
+    if self.minor_email?
+      self.delay.send_lists(CONFIG[:ISSUE_LISTS][:MINOR_LIST])
+    end
+  end
+
+  def send_major_notifications_on_create
+    if self.major_email?
+      self.delay.send_lists(CONFIG[:ISSUE_LISTS][:MAJOR_LIST])
+    end
+  end
+
+  def send_critical_notifications_on_create
+    if self.critical_email?
+      self.delay.send_lists(CONFIG[:ISSUE_LISTS][:CRITICAL_LIST])
     end
   end
 
