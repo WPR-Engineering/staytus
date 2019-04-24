@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160524191816) do
+ActiveRecord::Schema.define(version: 20190406021708) do
 
   create_table "api_tokens", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -91,6 +91,9 @@ ActiveRecord::Schema.define(version: 20160524191816) do
     t.datetime "updated_at",                                      null: false
     t.string   "identifier",        limit: 255
     t.boolean  "notify",                          default: false
+    t.boolean  "minor_email"
+    t.boolean  "major_email"
+    t.boolean  "critical_email"
   end
 
   create_table "issues", force: :cascade do |t|
@@ -103,6 +106,9 @@ ActiveRecord::Schema.define(version: 20160524191816) do
     t.integer  "user_id",           limit: 4
     t.string   "identifier",        limit: 255
     t.boolean  "notify",                        default: false
+    t.boolean  "minor_email"
+    t.boolean  "major_email"
+    t.boolean  "critical_email"
   end
 
   create_table "maintenance_service_joins", force: :cascade do |t|
@@ -113,13 +119,16 @@ ActiveRecord::Schema.define(version: 20160524191816) do
   end
 
   create_table "maintenance_updates", force: :cascade do |t|
-    t.integer  "maintenance_id", limit: 4
-    t.integer  "user_id",        limit: 4
-    t.text     "text",           limit: 65535
-    t.datetime "created_at",                                   null: false
-    t.datetime "updated_at",                                   null: false
-    t.string   "identifier",     limit: 255
-    t.boolean  "notify",                       default: false
+    t.integer  "maintenance_id",    limit: 4
+    t.integer  "user_id",           limit: 4
+    t.text     "text",              limit: 65535
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
+    t.string   "identifier",        limit: 255
+    t.boolean  "notify",                          default: false
+    t.boolean  "low_risk_email"
+    t.boolean  "medium_risk_email"
+    t.boolean  "high_risk_email"
   end
 
   create_table "maintenances", force: :cascade do |t|
@@ -135,6 +144,9 @@ ActiveRecord::Schema.define(version: 20160524191816) do
     t.datetime "closed_at"
     t.string   "identifier",        limit: 255
     t.boolean  "notify",                          default: false
+    t.boolean  "low_risk_email"
+    t.boolean  "medium_risk_email"
+    t.boolean  "high_risk_email"
   end
 
   create_table "nifty_attachments", force: :cascade do |t|

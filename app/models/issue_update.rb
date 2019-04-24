@@ -11,7 +11,10 @@
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #  identifier        :string(255)
-#  notify            :boolean          default("0")
+#  notify            :boolean          default(FALSE)
+#  minor_email       :boolean
+#  major_email       :boolean
+#  critical_email    :boolean
 #
 
 class IssueUpdate < ActiveRecord::Base

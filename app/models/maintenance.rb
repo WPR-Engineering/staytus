@@ -14,7 +14,10 @@
 #  updated_at        :datetime         not null
 #  closed_at         :datetime
 #  identifier        :string(255)
-#  notify            :boolean          default("0")
+#  notify            :boolean          default(FALSE)
+#  low_risk_email    :boolean
+#  medium_risk_email :boolean
+#  high_risk_email   :boolean
 #
 
 class Maintenance < ActiveRecord::Base

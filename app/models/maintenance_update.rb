@@ -2,14 +2,17 @@
 #
 # Table name: maintenance_updates
 #
-#  id             :integer          not null, primary key
-#  maintenance_id :integer
-#  user_id        :integer
-#  text           :text(65535)
-#  created_at     :datetime         not null
-#  updated_at     :datetime         not null
-#  identifier     :string(255)
-#  notify         :boolean          default("0")
+#  id                :integer          not null, primary key
+#  maintenance_id    :integer
+#  user_id           :integer
+#  text              :text(65535)
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  identifier        :string(255)
+#  notify            :boolean          default(FALSE)
+#  low_risk_email    :boolean
+#  medium_risk_email :boolean
+#  high_risk_email   :boolean
 #
 
 class MaintenanceUpdate < ActiveRecord::Base

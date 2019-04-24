@@ -52,7 +52,7 @@
               = f.label :notify, "Yes - send notifications to #{pluralize Subscriber.verified.count, 'subscriber'}"
 
       %dl.fieldSet__field.u-margin
-        %dt.fieldSet__label= f.label :monir_email, "Notify the low risk email list when this issue is posted?"
+        %dt.fieldSet__label= f.label :low_risk_email, "Notify the low risk email list when this issue is posted?"
         %dd.fieldSet__input
           .fieldSet__checkbox.fieldSet__selectContainer
             = f.check_box :low_risk_email
@@ -89,4 +89,4 @@
               Posted #{time_tag update.created_at}
               - if update.user
                 by #{update.user.name}
-              = link_to "Edit", [:edit, :admin, @maintenance, update], :class => 'u-underline issueUpdates__ed
+              = link_to "Edit", [:edit, :admin, @maintenance, update], :class => 'u-underline issueUpdates__edit'
